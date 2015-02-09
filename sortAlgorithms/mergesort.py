@@ -5,11 +5,10 @@ class sortList(list):
 
     def merge(self, low, middle, high):
         """
-        A is the array to be merged.  low < middle < high are indices for the bounds of the two subarrays to be merged.
+        low < middle < high are indices for the bounds of the two subarrays to be merged.
         method called my mergeSort to merge the lists If the subarrays self[low:middle] and self[middle:high+1] are sorted increasing order, 
         the merge sorts the sub array A[low:high+1] by merge the two subarrays
         """
-        counter = 0
         buffer1 = self[low:middle+1] 
         buffer2 = self[middle+1:high+1]
         for i in range(low,high+1):
@@ -27,9 +26,15 @@ class sortList(list):
                     self[i] = buffer2[0]
                     buffer2 = buffer2[1:]
 
-    def mergeSort(self, low, high):
+    def mergeSortRange(self, low, high):
+        """
+        mergeSorts all elements between the indices low and high.  
+        """
         if low < high:
             middle = (low + high)/2
-            self.mergeSort(low,middle)
-            self.mergeSort(middle+1,high)
+            self.mergeSortRange(low,middle)
+            self.mergeSortRange(middle+1,high)
             self.merge(low,middle,high)
+    def mergeSort(self):
+        high = len(self) -1
+        self.mergeSortRange(0,high)
