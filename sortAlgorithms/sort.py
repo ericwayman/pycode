@@ -3,6 +3,8 @@ import numpy as np
 
 class sortList(list):
 
+    "all methods sort in increasing order"
+
     "mergeSort methods"
     def __merge(self, low, middle, high):
         """
@@ -78,3 +80,27 @@ class sortList(list):
             p = self.__partition(low,high)
             self.__quickSortRange(low,p-1)
             self.__quickSortRange(p+1,high)
+
+
+    "binary search methods"
+
+    def __binarySearchRange(self,low,high,val):
+        if high < low:
+            return -1
+        middle = (low+high)/2
+        middleValue = self[middle]
+        if val == self[middle]:
+            return middle
+        elif val <self[middle]:
+            "binary search in first half of array"
+            return self.__binarySearchRange(low,middle-1,val)
+        else:
+            "binary search in second half of array"
+            return self.__binarySearchRange(middle+1,high,val)
+
+    def binarySearch(self,val):
+        high = len(self) -1
+        return self.__binarySearchRange(0,high,val)
+
+
+
