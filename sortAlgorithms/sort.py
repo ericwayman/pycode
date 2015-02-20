@@ -1,4 +1,5 @@
 import numpy as np
+import heap
 
 
 class sortList(list):
@@ -82,6 +83,14 @@ class sortList(list):
             self.__quickSortRange(p+1,high)
 
 
+    def heapSort(self):
+        "implements heapsort on an array.  Returns a new array whose entries are the  entries of self are in increasing order"
+        sortedList = [0]*len(self)
+        H = heap.heap(self)
+        for i in range(len(self)):
+            sortedList[i] = H.extractMin()
+        return sortList(sortedList)
+
     "binary search methods"
 
     def __binarySearchRange(self,low,high,val):
@@ -99,6 +108,9 @@ class sortList(list):
             return self.__binarySearchRange(middle+1,high,val)
 
     def binarySearch(self,val):
+        """
+        Implements binary search on a sorted list.  Returns the index of the match if val is in the array and -1 if val is not in the array.
+        """
         high = len(self) -1
         return self.__binarySearchRange(0,high,val)
 
