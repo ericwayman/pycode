@@ -75,16 +75,6 @@ class heap(list):
             self.bubbleDown(minIndex)
 
 
-    #def makeHeap(data):
-    #   """
-    #    returns a heap with entries corresponding to the entries from the list data.  
-    #    """
-    #    H = heap()
-    #    for i in range(len(data)):
-    #        H.insert(data[i])
-    #    return H
-
-
     def extractMin(self):
         """
         removes and returns the min element (the root) of the heap.  Creates a new root by placing the last entry of the heap
